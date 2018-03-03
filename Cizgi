@@ -1,0 +1,21 @@
+package paintprototip;
+
+import java.awt.Graphics;
+import java.awt.Point;
+
+/**
+ *
+ * @author ibrahimcss
+ */
+public class Cizgi extends Sekil{
+      public Cizgi(Point start, Point end) {
+        super(start, end);
+    }
+
+    
+    @Override
+    public void ciz(Graphics g) {
+        g.drawLine((int)start.getX(), (int)start.getY(), (int)end.getX(), (int)end.getY());
+    }
+    
+}
