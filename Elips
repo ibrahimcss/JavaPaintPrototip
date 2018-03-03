@@ -1,0 +1,26 @@
+package paintprototip;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.geom.Ellipse2D;
+import java.awt.*;
+/**
+ *
+ * @author ibrahimcss
+ */
+public class Elips extends Sekil{
+
+    
+    public Elips(Point start, Point end){
+    super(start, end);
+    
+    }
+    @Override
+    public void ciz(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.draw(new Ellipse2D.Double((Double) start.getX(), (Double) start.getY(), (Double) Math.abs(start.getX() - end.getX()), (Double) Math.abs(start.getY() - end.getY())));  
+    
+    }
+    
+}
