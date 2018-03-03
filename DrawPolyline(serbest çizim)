@@ -1,0 +1,41 @@
+package paintprototip;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author ibrahimcss
+ */
+public class DrawPolyline extends Sekil {
+
+    public DrawPolyline(Point start, Point end) {
+        super(start, end);
+    }
+    ArrayList<Point> points;
+    public DrawPolyline() {
+        super(null, null);
+        points = new ArrayList<>();
+    }
+
+    public void add(Point p)
+    {
+        points.add(p);
+    }
+    @Override
+    public void ciz(Graphics g) 
+    {
+        int [] intx = new int [points.size()];
+        int [] inty = new int [points.size()];
+        
+        for (int i = 0; i < points.size(); i++) {
+            intx[i] = (int)points.get(i).getX();
+                        inty[i] = (int)points.get(i).getY();
+
+        }
+        g.drawPolyline(intx, inty, points.size());
+    }
+    
+}
