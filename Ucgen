@@ -1,0 +1,24 @@
+package paintprototip;
+
+import java.awt.Graphics;
+import java.awt.Point;
+
+/**
+ *
+ * @author IBRAHIMCSS
+ */
+public class Ucgen  extends Sekil{
+    
+    public Ucgen(Point start, Point end){
+    
+    super(start, end);
+    }
+
+    @Override
+    public void ciz(Graphics g) {
+        int[] xPoints = {(int) (start.getX()+(end.getX()-start.getX())/2),(int) start.getX(),(int)end.getX()};
+int[] yPoints = {(int)start.getY(),(int)end.getY(),(int)end.getY()};
+g.drawPolygon(xPoints, yPoints, 3);
+    }
+    
+}
