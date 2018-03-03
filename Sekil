@@ -1,0 +1,25 @@
+package paintprototip;
+
+import java.awt.Graphics;
+import java.awt.Point;
+
+/**
+ *
+ * @author IBRAHIMCSS
+ */
+abstract class Sekil {
+    
+    Point start, end;
+
+    public Sekil(Point start, Point end) {
+        this.start = start;
+        this.end = end;
+    }
+    
+    //her şeklin farklı bir çizim yöntemi oldugundan,sekil adında bir soyut sınıf belirliyoruz ve ciz adında bir fonksiyon belirtiyoruz ki
+    //bu ciz fonksiyonu her cizimin farklı bir yolu olduğundan bu fonksiyon yeniden yapılandırılabilsin
+    //bu bizi farklı farklı fonksiyonlar oluşturma karmaşıklığından kurtarır
+    public abstract void ciz(Graphics g);
+    
+    
+}
