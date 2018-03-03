@@ -1,0 +1,148 @@
+package paintprototip;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Lab
+ */
+public class MyCanvas extends Canvas implements MouseMotionListener, MouseListener {
+
+    int secilen = 0;
+    ArrayList<Sekil> list = new ArrayList();
+    ArrayList<Sekil> silinenlist = new ArrayList<>();
+
+    public MyCanvas() {
+        setBackground(Color.white);
+
+        addMouseMotionListener(this);
+        addMouseListener(this);
+
+    }
+
+    public void Cleaner() {
+        if (!list.isEmpty()) {
+            list.clear();
+
+            repaint();
+            JOptionPane.showMessageDialog(null, null, "ekran temizlendi", WIDTH);
+        } else {
+            JOptionPane.showMessageDialog(null, null, "ekran temizlendi", WIDTH);
+        }
+
+    }
+
+    public void geri() {
+        if (!list.isEmpty()) {
+            Sekil remove = list.remove(list.size() - 1);
+            
+           silinenlist.add(remove);
+            System.out.println(silinenlist);
+            repaint();
+        } else {
+            JOptionPane.showMessageDialog(null, null, "ekran temiz", WIDTH);
+        }
+
+    }
+
+  public void ileri(Graphics g){
+
+              for (int counter=silinenlist.size()-1; counter>=0; counter--) {
+                     silinenlist.get(counter).ciz(g);
+       
+                   repaint();
+     
+              }
+     
+         
+    
+ }
+  
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.setColor(Color.green);
+      
+        for (Sekil sekil : list) {
+            sekil.ciz(g);
+        }
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if (list.isEmpty()) {
+            return;
+        }
+        if ((secilen == 1 || secilen == 2 || secilen == 4 || secilen == 5 || secilen == 6||secilen==7)) {
+            list.get(list.size() - 1).end = e.getPoint();
+        } else if (secilen == 3) {
+            ((DrawPolyline) list.get(list.size() - 1)).add(e.getPoint());
+        }
+        repaint();
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        // System.out.println("Moved:"+e.getX() + " " + e.getY());
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if (secilen == 1) {
+            list.add(new Cizgi(e.getPoint(), e.getPoint()));
+        } else if (secilen == 2) {
+            list.add(new Dikdortgen(e.getPoint(), e.getPoint()));
+
+        } else if (secilen == 3) {
+
+            list.add(new DrawPolyline());
+
+        } else if (secilen == 4) {
+            list.add(new Oval(e.getPoint(), e.getPoint()));
+
+        } else if (secilen == 5) {
+
+            list.add(new Ucgen(e.getPoint(), e.getPoint()));
+
+        } else if (secilen == 6) {
+
+            list.add(new Elips(e.getPoint(), e.getPoint()));
+
+        }else if (secilen == 7) {
+
+            list.add(new Yildiz(e.getPoint(), e.getPoint()));
+
+        }
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+}
