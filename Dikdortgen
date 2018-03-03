@@ -1,0 +1,45 @@
+package paintprototip;
+
+import java.awt.Graphics;
+import java.awt.Point;
+
+/**
+ *
+ * @author Lab
+ */
+public class Dikdortgen extends Sekil {
+
+    public Dikdortgen(Point start, Point end) {
+        super(start, end);
+    }
+
+    @Override
+    public void ciz(Graphics g) {
+
+        int durum = 0;
+        if (end.x > start.x && end.y > start.y) {
+            durum = 4; //
+        } else if (end.x > start.x && start.y > end.y) {
+            durum = 3;
+        } else if (start.x > end.x && start.y > end.y) {
+            durum = 2;
+        } else {
+            durum = 1;
+        }
+        switch (durum) {
+            case 1:
+                g.drawRect((int) start.getX(), (int) start.getY(), (int) Math.abs(start.getX() - end.getX()), (int) Math.abs(start.getY() - end.getY()));
+                break;
+            case 2:
+                g.drawRect((int) end.getX(), (int) end.getY(), (int) Math.abs(start.getX() - end.getX()), (int) Math.abs(start.getY() - end.getY()));
+                break;
+            case 3:
+                g.drawRect((int) start.getX(), (int) end.getY(), (int) Math.abs(start.getX() - end.getX()), (int) Math.abs(start.getY() - end.getY()));
+                break;
+            case 4:
+                g.drawRect((int) start.getX(), (int) start.getY(), (int) Math.abs(start.getX() - end.getX()), (int) Math.abs(start.getY() - end.getY()));
+                break;
+        }
+    }
+
+}
